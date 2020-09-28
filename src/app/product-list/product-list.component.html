@@ -1,0 +1,36 @@
+<h2>Products</h2>
+
+<div *ngFor="let product of products; index as productId">
+  <!-- With *ngFor, the <div> repeats for each product in the list. -->
+  <h3>
+    <!-- add the <a> element to make each product name a link to product details. 
+    and set its title to be the product's name by using the property binding [ ] syntax -->
+    <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
+      <!-- To display the names of the products, use the interpolation syntax {{ }}. -->
+      {{ product.name }}
+    </a>
+  </h3>
+
+  <!-- use an *ngIf directive so that Angular only creates the <p> element if the current product has a description. -->
+  <p *ngIf="product.description">
+    Description: {{ product.description }}
+  </p>
+
+  <!-- Bind the button's click event to the share() method -->
+  <button (click)="share()">
+    Share
+  </button>
+
+  <!-- Pass the current product as input to the component using property binding. -->
+  <app-product-alerts
+    [product]="product"
+    (notify)="onNotify()">
+  </app-product-alerts>
+  
+</div>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
