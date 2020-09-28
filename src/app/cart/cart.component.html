@@ -8,9 +8,24 @@
   <span>{{ item.name }}</span>
   <span>{{ item.price | currency }}</span>
 </div>
+<!-- Use a formGroup property binding to bind the checkoutForm to the form tag in the template. -->
+<!-- On the form tag, use an ngSubmit event binding to listen for the form submission and call the onSubmit() method with the checkoutForm value. -->
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <!-- Add input fields for name and address. -->
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
 
-<form [formGroup]="checkoutForm">
-
+  <div>
+    <label for="address">
+      Address
+    </label>
+    <input id="address" type="text" formControlName="address">
+  </div>
+  <!-- Include a "Purchase" button to submit the form. -->
   <button class="button" type="submit">Purchase</button>
 
 </form>
